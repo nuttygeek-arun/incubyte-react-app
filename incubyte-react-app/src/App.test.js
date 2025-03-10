@@ -42,3 +42,13 @@ test('should render sum of provided input with double digit values', () => {
   const outputValue = screen.getByTestId('output');
   expect(outputValue.innerHTML).toBe('Sum is: 75')
 });
+
+test('should render 0 when input string is empty', () => {
+  render(<App />);
+  // getting calculate button
+  const calculateButton = screen.getByTestId('calculate');
+  // triggering click on calculate button
+  fireEvent.click(calculateButton);
+  const outputValue = screen.getByTestId('output');
+  expect(outputValue.innerHTML).toBe('Sum is: 0')
+});
