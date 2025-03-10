@@ -97,3 +97,18 @@ test('should render sum when the string values are separated by custom delimiter
   const outputValue = screen.getByTestId('output');
   expect(outputValue.innerHTML).toBe('Sum is: 6')
 });
+
+test('should render sum when the string values are separated by custom delimiter with numerical values', () => {
+  render(<App />);
+  // getting input element
+  const inputWrapper = screen.getByTestId("input");
+  const inputElement = inputWrapper.querySelector("input");
+  // providing value to input element
+  fireEvent.change(inputElement, { target: { value: "//00\\n1002003" } });
+  // getting calculate button
+  const calculateButton = screen.getByTestId('calculate');
+  // triggering click on calculate button
+  fireEvent.click(calculateButton);
+  const outputValue = screen.getByTestId('output');
+  expect(outputValue.innerHTML).toBe('Sum is: 6')
+});
