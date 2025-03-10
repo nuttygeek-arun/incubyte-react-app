@@ -37,6 +37,7 @@ function App() {
         </Typography>
         <TextField
           fullWidth
+          data-testid="input"
           variant="outlined"
           placeholder="E.g., //;\n1;2;3 or 1,2,3"
           value={input}
