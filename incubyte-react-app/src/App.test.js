@@ -27,3 +27,18 @@ test('should render sum of provided input', () => {
   const outputValue = screen.getByTestId('output');
   expect(outputValue.innerHTML).toBe('Sum is: 6')
 });
+
+test('should render sum of provided input with double digit values', () => {
+  render(<App />);
+  // getting input element
+  const inputWrapper = screen.getByTestId("input");
+  const inputElement = inputWrapper.querySelector("input");
+  // providing value to input element
+  fireEvent.change(inputElement, { target: { value: "15,25,35" } });
+  // getting calculate button
+  const calculateButton = screen.getByTestId('calculate');
+  // triggering click on calculate button
+  fireEvent.click(calculateButton);
+  const outputValue = screen.getByTestId('output');
+  expect(outputValue.innerHTML).toBe('Sum is: 75')
+});
