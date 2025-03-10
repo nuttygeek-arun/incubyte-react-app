@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
 test('renders input field on the screen', () => {
   render(<App />);
-  const linkElement = screen.getByTestId('input');
-  expect(linkElement).toBeInTheDocument();
+  const inputElement = screen.getByTestId('input');
+  expect(inputElement).toBeInTheDocument();
+});
+
+test('renders calculate on the screen', () => {
+  render(<App />);
+  const calculateButton = screen.getByTestId('calculate');
+  expect(calculateButton).toBeInTheDocument();
 });

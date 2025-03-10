@@ -46,13 +46,14 @@ function App() {
         />
         <Button
           fullWidth
+          data-testid="calculate"
           variant="contained"
           sx={{ mt: 2, bgcolor: "blue" }}
           onClick={handleCalculate}
         >
           Calculate
         </Button>
-        {(sum || sum == 0) && <Typography variant="body2" color="textSecondary" align="center" sx={{ mt: 1 }}>
+        {(sum || sum == 0) && <Typography data-testid="output" variant="body2" color="textSecondary" align="center" sx={{ mt: 1 }}>
           Sum is: {sum}
         </Typography>}
       </CardContent>
