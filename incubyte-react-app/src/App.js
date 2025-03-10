@@ -1,24 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
 
 function App() {
+  const [input, setInput] = useState("");
+  const [sum, setSum] = useState();
+
+  const handleCalculate = () => {
+    if(!input || input == '') {
+      setSum(0);  
+      return;    
+    };
+    const numArray = input.split(',');
+    const sumEvaluated = numArray.map((num) => parseInt(num)).reduce((acc, val) => {
+        return acc+val
+    }, 0);
+    setSum(sumEvaluated);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Box
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    minHeight="100vh"
+    bgcolor="#f8fafa"
+  >
+    <Card sx={{ width: 400, p: 2, boxShadow: 3, borderRadius: 3 }}>
+      <CardContent>
+        <Typography variant="h5" align="center" fontWeight="bold">
+          String Calculator
+        </Typography>
+        <Typography variant="body2" color="textSecondary" align="center" sx={{ mt: 1 }}>
+          Enter numbers
+          <br />
+          (Format: <span style={{ color: "purple" }}>//[delimiter]\n[numbers]</span>)
+        </Typography>
+        <TextField
+          fullWidth
+          variant="outlined"
+          placeholder="E.g., //;\n1;2;3 or 1,2,3"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          sx={{ mt: 2 }}
+        />
+        <Button
+          fullWidth
+          variant="contained"
+          sx={{ mt: 2, bgcolor: "blue" }}
+          onClick={handleCalculate}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Calculate
+        </Button>
+        {(sum || sum == 0) && <Typography variant="body2" color="textSecondary" align="center" sx={{ mt: 1 }}>
+          Sum is: {sum}
+        </Typography>}
+      </CardContent>
+    </Card>
+  </Box>
   );
 }
 
