@@ -82,3 +82,18 @@ test('should render sum when the string values are separated by \\n and , both '
   const outputValue = screen.getByTestId('output');
   expect(outputValue.innerHTML).toBe('Sum is: 232')
 });
+
+test('should render sum when the string values are separated by custom delimiter', () => {
+  render(<App />);
+  // getting input element
+  const inputWrapper = screen.getByTestId("input");
+  const inputElement = inputWrapper.querySelector("input");
+  // providing value to input element
+  fireEvent.change(inputElement, { target: { value: "//;;\\n1;;2;;3" } });
+  // getting calculate button
+  const calculateButton = screen.getByTestId('calculate');
+  // triggering click on calculate button
+  fireEvent.click(calculateButton);
+  const outputValue = screen.getByTestId('output');
+  expect(outputValue.innerHTML).toBe('Sum is: 6')
+});
