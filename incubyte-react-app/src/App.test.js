@@ -52,3 +52,18 @@ test('should render 0 when input string is empty', () => {
   const outputValue = screen.getByTestId('output');
   expect(outputValue.innerHTML).toBe('Sum is: 0')
 });
+
+test('should render sum when the string values are separated by \\n ', () => {
+  render(<App />);
+  // getting input element
+  const inputWrapper = screen.getByTestId("input");
+  const inputElement = inputWrapper.querySelector("input");
+  // providing value to input element
+  fireEvent.change(inputElement, { target: { value: "15\\n25\\n35" } });
+  // getting calculate button
+  const calculateButton = screen.getByTestId('calculate');
+  // triggering click on calculate button
+  fireEvent.click(calculateButton);
+  const outputValue = screen.getByTestId('output');
+  expect(outputValue.innerHTML).toBe('Sum is: 75')
+});
