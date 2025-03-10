@@ -10,7 +10,14 @@ function App() {
       setSum(0);  
       return;    
     };
-    const numArray = input.split(/[\\n,]+/);
+    let delimiter = /[\\n,]+/;
+    let numSet = input;
+    if(input.startsWith('//')) {
+      let delimterString = input.split('//')[1].split('\\n')
+      delimiter = delimterString[0];
+      numSet = delimterString[1]; 
+    }
+    const numArray = numSet.split(delimiter);
     const sumEvaluated = numArray.map((num) => parseInt(num)).reduce((acc, val) => {
         return acc+val
     }, 0);
