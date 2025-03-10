@@ -10,7 +10,7 @@ function App() {
       setSum(0);  
       return;    
     };
-    const numArray = input.split(',');
+    const numArray = input.split(/[\\n,]+/);
     const sumEvaluated = numArray.map((num) => parseInt(num)).reduce((acc, val) => {
         return acc+val
     }, 0);
